@@ -1,10 +1,14 @@
 import './App.css'
 import { FormikDemo } from './FormikDemo'
+import { ReactHookFormDemo } from './ReactHookFormDemo'
 
 function App () {
   return (
     <>
-      <FormikDemo />
+      <div className='forms-container'>
+        <FormikDemo />
+        <ReactHookFormDemo />
+      </div>
     </>
   )
 }

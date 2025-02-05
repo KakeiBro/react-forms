@@ -1,5 +1,6 @@
 #root {
-  max-width: 1280px;
+  width: 100vw;
+  height: 100vh;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -39,4 +40,13 @@
 
 .read-the-docs {
   color: #888;
+}
+
+div.forms-container {
+  display: flex;
+  flex-direction: row;
+
+  form {
+    flex: 1;
+  }
 }
