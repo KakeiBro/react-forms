@@ -11,10 +11,16 @@ function ReactHookFormDemo () {
     handleSubmit,
     watch,
     formState: { errors }
-  } = useForm<Inputs>()
+  } = useForm<Inputs>({
+    defaultValues: {
+      example: 'defaultExample',
+      exampleRequired: 'exampleRequired'
+    }
+  })
   const onSubmit: SubmitHandler<Inputs> = console.log
 
-  console.log(watch('example'))
+  console.log(errors)
+  console.log('watch', watch('example'))
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -23,9 +29,14 @@ function ReactHookFormDemo () {
       <input defaultValue='test' {...register('example')} />
 
       {/* include validation with required or other standard HTML validation rules */}
-      <input {...register('exampleRequired', { required: true })} />
+      <input
+        {...register('exampleRequired', {
+          required: 'This is required',
+          minLength: { value: 4, message: 'Min length is 4' }
+        })}
+      />
       {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
+      {errors.exampleRequired && <span>{errors.exampleRequired.message}</span>}
 
       <input type='submit' />
     </form>
